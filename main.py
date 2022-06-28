@@ -41,10 +41,7 @@ valid_metrics_name = [
 
 
 def validate_metrics(metrics_name: str) -> list:
-    try:
-        metrics_name = metrics_name.split(", ")
-    except:
-        return None
+    metrics_name = metrics_name.split(", ")
 
     for metric in metrics_name:
         if metric not in valid_metrics_name:
