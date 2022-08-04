@@ -12,7 +12,7 @@ Given a model name and the desired metric, this generator will generate a graph 
 Run the following command to install all the dependencies:
 
 ```sh
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Features / Execution
