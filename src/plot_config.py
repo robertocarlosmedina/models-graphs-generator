@@ -1,6 +1,6 @@
 import json
 import matplotlib.pyplot as plt
-from numpy import pad
+
 
 colors = ["#3EC70B", "#FF0000", "#3B44F6", "#FF5B00", "#0E185F", "#243D25"]
 
