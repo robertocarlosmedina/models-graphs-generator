@@ -7,6 +7,14 @@ Given a model name and the desired metric, this generator will generate a graph 
 > All aspects addressed in the implementation were made according to the needs of the project as a whole.
 > Cape Verdean Creole is the mother language of Cape Verde, which is not an official language and is not well represented and known around the world. Therefore, it is a great honor to carry out studies and projects that contribute to its recognition and dissemination.
 
+### Dependencies installation
+
+Run the following command to install all the dependencies:
+
+```sh
+    pip install -r requirements.txt
+```
+
 ### Features / Execution
 
 To generate the graph you need to pass the correct parameters during the execution of the main Python file, for example:
