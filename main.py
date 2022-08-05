@@ -37,7 +37,7 @@ from src.plot_config import Plot_Metrics_Graphs as plt_MG
 
 
 valid_metrics_name = [
-    "Training Loss", "Validation Loss", "Training Accuracy", "Validation Accuracy"
+    "Training Loss", "Validation Loss", "Training Accuracy", "Validation Accuracy",
     "BLUE Score", "METEOR Score", "TER Score"
 ]
 
