@@ -1,4 +1,5 @@
 import argparse
+from pickle import NONE
 from termcolor import colored
 
 arg_pr = argparse.ArgumentParser()
@@ -21,6 +22,13 @@ arg_pr.add_argument(
     help="Target languague the model"
 )
 
+arg_pr.add_argument(
+    "-sm", "--smoothing",
+    type=float,
+    default=NONE,
+    help="Smoothing the graphics"
+)
+
 args = vars(arg_pr.parse_args())
 
 
@@ -28,6 +36,14 @@ if args["source"] == args["target"]:
     print(
         colored(
             "Error: Source languague and Target languague should not be the same.",
+            "red", attrs=["bold"])
+    )
+    exit(1)
+
+if args["smoothing"] < 0 or args["smoothing"] > 1:
+    print(
+        colored(
+            "Error: Smoothing value must be between 0 and 1.",
             "red", attrs=["bold"])
     )
     exit(1)
@@ -68,9 +84,10 @@ if not metrics_name:
     )
     exit(1)
 
+
 header_name = str(input(colored("\nPlot header name: ", "magenta", attrs=["bold"])))
 y_label = str(input(colored("\ny_label name: ", "magenta", attrs=["bold"])))
-
+x_label = str(input(colored("\nx_label name: ", "magenta", attrs=["bold"])))
 
 
 if __name__ == "__main__":
@@ -80,5 +97,7 @@ if __name__ == "__main__":
         source = args["source"], 
         target = args["target"], 
         plot_header=header_name, 
-        y_label=y_label
+        y_label=y_label,
+        x_label=x_label,
+        smoothing=args["smoothing"]
     )

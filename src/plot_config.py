@@ -84,8 +84,25 @@ class Plot_Metrics_Graphs:
         return all_metrics
 
     @staticmethod
+    def smoothing_values(scalars: list, weight: float) -> list:  # Weight between 0 and 1
+        """
+            ref: https://stackoverflow.com/questions/42011419/is-it-possible-to-call-tensorboard-smooth-function-manually
+    
+            :param scalars:
+            :param weight:
+            :return:
+        """
+        last = scalars[0]  # First value in the plot (first timestep)
+        smoothed: list = []
+        for point in scalars:
+            smoothed_val = last * weight + (1 - weight) * point  # Calculate smoothed value
+            smoothed.append(smoothed_val)                        # Save it
+            last = smoothed_val                                  # Anchor the last smoothed value
+        return smoothed
+
+    @staticmethod
     def plot_metrics(models: list, metrics_name: list,  source: str, \
-            target: str, plot_header: str, y_label: str, x_label="Epochs") -> None:
+            target: str, plot_header: str, y_label: str,  x_label="Epochs", smoothing=None) -> None:
         """
             Method to calculate and plot different models validation accuracy.
         """
@@ -96,7 +113,11 @@ class Plot_Metrics_Graphs:
         all_metrics = Plot_Metrics_Graphs.make_metrics(models, graphs_name)
 
         for metric, color in zip(all_metrics.items(), colors[0:len(all_metrics.items())]):
-            plt.plot(metric[1][0], metric[1][1], color=color, label=metric[0])
+            plt.plot(
+                Plot_Metrics_Graphs.smoothing_values(metric[1][0], smoothing) if smoothing else metric[1][0], 
+                Plot_Metrics_Graphs.smoothing_values(metric[1][1], smoothing) if smoothing else metric[1][1], 
+                color=color, label=metric[0]
+            )
         
         plt.legend()
         plt.title(f"{plot_header} ({direction})", pad=18,
