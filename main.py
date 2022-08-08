@@ -25,7 +25,7 @@ arg_pr.add_argument(
 arg_pr.add_argument(
     "-sm", "--smoothing",
     type=float,
-    default=NONE,
+    default=None,
     help="Smoothing the graphics"
 )
 
@@ -40,13 +40,14 @@ if args["source"] == args["target"]:
     )
     exit(1)
 
-if args["smoothing"] < 0 or args["smoothing"] > 1:
-    print(
-        colored(
-            "Error: Smoothing value must be between 0 and 1.",
-            "red", attrs=["bold"])
-    )
-    exit(1)
+if args["smoothing"]:
+    if args["smoothing"] < 0 or args["smoothing"] > 1:
+        print(
+            colored(
+                "Error: Smoothing value must be between 0 and 1.",
+                "red", attrs=["bold"])
+        )
+        exit(1)
 
 
 from src.plot_config import Plot_Metrics_Graphs as plt_MG
