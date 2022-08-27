@@ -118,6 +118,8 @@ class Plot_Metrics_Graphs:
                 Plot_Metrics_Graphs.smoothing_values(metric[1][1], smoothing) if smoothing else metric[1][1], 
                 color=color, label=metric[0]
             )
+            metrics_values = [value for value in metric[1][1] if value <= 1 and value >= 0]
+            print(f"Average of {metric[0]}: {sum(metrics_values)/len(metrics_values)}")
         
         plt.legend()
         plt.title(f"{plot_header} ({direction})", pad=18,
