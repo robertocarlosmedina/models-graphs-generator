@@ -2,6 +2,7 @@ import argparse
 from pickle import NONE
 from termcolor import colored
 
+
 arg_pr = argparse.ArgumentParser()
 
 arg_pr.add_argument(
