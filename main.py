@@ -7,7 +7,7 @@ arg_pr = argparse.ArgumentParser()
 
 arg_pr.add_argument(
     "-m", "--model", nargs="+", required=True,
-    choices=["GRU", "LSTM", "Transformer"],
+    choices=["GAtt", "LSTM", "Transformer"],
     help="Add the model to use on the graphic plot."
 )
 
